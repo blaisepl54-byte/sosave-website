@@ -301,36 +301,39 @@ input, select, textarea { font: inherit; color: inherit; }
 
 .cultural-pills {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
-  gap: 10px;
+  gap: 6px;
   margin: 0 auto 40px;
-  max-width: 780px;
+  max-width: 100%;
 }
 .cultural-pill {
   display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px 16px;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 4px;
+  padding: 4px 10px;
   border-radius: var(--radius-pill);
   background: rgba(245, 240, 232, 0.05);
   border: 1px solid rgba(245, 240, 232, 0.12);
-  font-size: 12px;
-  line-height: 1.3;
+  font-size: 11px;
+  line-height: 1.4;
+  white-space: nowrap;
 }
 .cultural-pill strong {
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: 15px;
+  font-size: 11px;
   color: var(--cream);
   letter-spacing: -0.01em;
 }
 .cultural-pill span {
   color: var(--green-d);
   font-size: 11px;
-  letter-spacing: 0.04em;
-  margin-top: 2px;
+  letter-spacing: 0.02em;
 }
+.cultural-pill span::before { content: "("; }
+.cultural-pill span::after  { content: ")"; }
 
 .hero-ctas {
   display: flex;
@@ -1116,9 +1119,7 @@ input, select, textarea { font: inherit; color: inherit; }
   .hero-ctas { flex-direction: column; width: 100%; }
   .hero-ctas .btn { width: 100%; }
 
-  .cultural-pills { gap: 8px; }
-  .cultural-pill { padding: 8px 12px; }
-  .cultural-pill strong { font-size: 14px; }
+  .cultural-pills { flex-wrap: wrap; gap: 6px; }
 
   .hero-audience { gap: 14px; flex-direction: column; align-items: center; }
 
