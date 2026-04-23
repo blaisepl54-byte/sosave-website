@@ -229,7 +229,26 @@ input, select, textarea { font: inherit; color: inherit; }
   color: var(--gold);
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0;
+}
+.nav-toggle-bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: transform 200ms ease, opacity 160ms ease;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 /* ---------- 6. Hero ---------- */
@@ -1011,9 +1030,31 @@ input, select, textarea { font: inherit; color: inherit; }
 @media (max-width: 768px) {
   :root { --section-y: 80px; }
 
-  .nav-links { display: none; }
+  .nav-inner { position: relative; gap: 10px; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: var(--forest);
+    padding: 6px 20px 18px;
+    gap: 0;
+    border-bottom: 1px solid var(--line-dark);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; border-bottom: 1px solid rgba(245, 240, 232, 0.06); }
+  .nav-links li:last-child { border-bottom: none; }
+  .nav-links a {
+    display: block;
+    padding: 14px 4px;
+    font-size: 16px;
+    color: var(--cream);
+  }
   .nav-toggle { display: inline-flex; }
-  .nav-cta { display: none; }
+  .nav-cta { padding: 9px 16px; font-size: 13px; }
 
   .hero { padding: 64px 0 84px; }
   .hero-title { font-size: clamp(38px, 9vw, 56px); }
@@ -1066,6 +1107,7 @@ input, select, textarea { font: inherit; color: inherit; }
 
   .nav-inner { padding: 14px var(--gutter); }
   .nav-logo { font-size: 22px; }
+  .nav-cta { display: none; }
 
   .hero { padding: 48px 0 64px; }
   .hero-title { font-size: clamp(34px, 10vw, 46px); margin: 20px auto 22px; }

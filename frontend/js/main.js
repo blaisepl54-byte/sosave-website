@@ -8,6 +8,22 @@ if (nav) {
   });
 }
 
+// Mobile nav toggle
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+const closeNav = () => {
+  navLinks?.classList.remove('open');
+  navToggle?.setAttribute('aria-expanded', 'false');
+};
+navToggle?.addEventListener('click', () => {
+  const isOpen = navLinks?.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+navLinks?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeNav();
+});
+
 // Waitlist tab switching
 const tabs = document.querySelectorAll('.waitlist-tab');
 const forms = {
